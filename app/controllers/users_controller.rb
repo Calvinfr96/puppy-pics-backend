@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
     def show
         user = find_user
-        render json: user
+        render json: user, include: :dogs
     end
 
     def destroy
