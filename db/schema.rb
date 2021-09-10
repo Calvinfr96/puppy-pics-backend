@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_10_151015) do
+ActiveRecord::Schema.define(version: 2021_09_10_174307) do
 
   create_table "breeds", force: :cascade do |t|
     t.string "name"
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 2021_09_10_151015) do
   end
 
   create_table "ratings", force: :cascade do |t|
-    t.string "good_boy?"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.integer "dog_id", null: false
+    t.boolean "good_boy?"
     t.index ["dog_id"], name: "index_ratings_on_dog_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end

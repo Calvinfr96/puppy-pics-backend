@@ -8,6 +8,6 @@ class RatingsController < ApplicationController
     end
 
     def rating_params
-        params.permit(:good_boy)
+        params.permit(:good_boy?)
     end
 end
