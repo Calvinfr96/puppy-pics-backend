@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_09_10_174307) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "breeds", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -23,15 +26,15 @@ ActiveRecord::Schema.define(version: 2021_09_10_174307) do
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "breed_id", null: false
+    t.bigint "breed_id", null: false
     t.index ["breed_id"], name: "index_dogs_on_breed_id"
   end
 
   create_table "ratings", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id", null: false
-    t.integer "dog_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "dog_id", null: false
     t.boolean "good_boy?"
     t.index ["dog_id"], name: "index_ratings_on_dog_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
