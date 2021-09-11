@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     def show
         user = find_user
-        render json: user, include: :dogs
+        render json: user, serializer: UserDogSerializer
     end
 
     def destroy

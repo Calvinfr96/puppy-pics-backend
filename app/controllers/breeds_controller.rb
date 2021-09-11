@@ -14,7 +14,7 @@ class BreedsController < ApplicationController
 
     def show
         breed = find_breed
-        render json: breed, include: :dogs
+        render json: breed, include: :dogs, serializer: BreedDogSerializer
     end
 
     private
