@@ -14,7 +14,7 @@ class DogsController < ApplicationController
     private
 
     def dog_params
-        params.permit(:name, :image_url)
+        params.permit(:name, :breed_id, :image_url)
     end
 
     def render_unprocessable_entity_response(invalid)

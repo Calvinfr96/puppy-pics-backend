@@ -2,6 +2,8 @@ class Dog < ApplicationRecord
     belongs_to :breed
     has_many :ratings
     validates :name, presence: true
+    validates :breed_id, presence: true
+    validates :image_url, presence: true, uniqueness: true
 
     def likes
         liked_dogs = ratings.select do |rating|
