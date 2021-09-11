@@ -3,7 +3,7 @@ class DogsController < ApplicationController
     
     def index
         dogs = Dog.all
-        render json: dogs
+        render json: dogs, methods: [:likes, :dislikes]
     end
 
     def create
