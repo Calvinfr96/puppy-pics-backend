@@ -9,7 +9,14 @@ class User < ApplicationRecord
             rating.good_boy?
         end
         liked_dogs = positive_ratings.collect do |rating|
-            rating.dog
+            {
+                :id => rating.dog.id,
+                :name => rating.dog.name,
+                :image_url => rating.dog.image_url,
+                :breed_id => rating.dog.breed_id,
+                :likes => rating.dog.likes,
+                :dislikes => rating.dog.dislikes
+            }
         end
         liked_dogs
     end
