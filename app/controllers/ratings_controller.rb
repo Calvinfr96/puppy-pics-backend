@@ -2,9 +2,15 @@ class RatingsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
+    def index
+        users = Rating.all
+        render json: users
+    end
+
     def create
         rating = Rating.create!(rating_params)
         render json: rating, status: :created
+        byebug
     end
 
     def update
