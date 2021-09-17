@@ -10,7 +10,6 @@ class RatingsController < ApplicationController
     def create
         rating = Rating.create!(rating_params)
         render json: rating, status: :created
-        byebug
     end
 
     def update
