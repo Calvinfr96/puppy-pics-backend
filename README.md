@@ -19,4 +19,4 @@ The database was built using 4 models:
 
 The following Entity Relationship Diagram shows how the models relate to one another:
 
-<img src="public/Phase_4_Project_ERD.png" align="center" />
+<img src="public/Phase_4_Project_ERD.JPG" align="center" />
