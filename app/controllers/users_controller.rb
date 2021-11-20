@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    skip_before_action :authorized, only: [:create]
 
     def index
         users = User.all
@@ -8,18 +9,19 @@ class UsersController < ApplicationController
     end
 
     def create
-        user = User.create!(user_params)
-        render json: user, status: :created
+        @user = User.create!(user_params)
+        @token = encode_token(user_id: user.id)
+        render json: {user: UserSerializer.new(@user), jwt: @token}, status: :created
     end
 
     def show
-        user = find_user
-        render json: user, serializer: UserDogSerializer
+        @user = find_user
+        render json: @user, serializer: UserDogSerializer
     end
 
     def destroy
-        user = find_user
-        user.destroy
+        @user = find_user
+        @user.destroy
         head :no_content
     end
 
