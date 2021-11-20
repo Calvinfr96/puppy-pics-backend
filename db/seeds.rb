@@ -65,15 +65,15 @@ Dog.create(name: dog_names.sample, image_url: "https://images.dog.ceo/breeds/gre
 
 puts "Seeding Users"
 user_1_salt = BCrypt::Engine.generate_salt
-user_1 = User.create!(name: "Silvia", password_digest: BCrypt::Engine.hash_secret("]UmF$ax8y<X3Lb-", user_1_salt))
+user_1 = User.create!(name: "Silvia", password_digest: BCrypt::Engine.hash_secret("UmF$ax8y<X3Lb-", user_1_salt))
 user_2_salt = BCrypt::Engine.generate_salt
-user_2 = User.create!(name: "Adam", password_digest: BCrypt::Engine.hash_secret("]UmF$ax8y<X3Lb-", user_2_salt))
+user_2 = User.create!(name: "Adam", password_digest: BCrypt::Engine.hash_secret("UmF$ax8y<X3Lb-", user_2_salt))
 user_3_salt = BCrypt::Engine.generate_salt
-user_3 = User.create!(name: "Yair", password_digest: BCrypt::Engine.hash_secret("]UmF$ax8y<X3Lb-", user_3_salt))
+user_3 = User.create!(name: "Yair", password_digest: BCrypt::Engine.hash_secret("UmF$ax8y<X3Lb-", user_3_salt))
 user_4_salt = BCrypt::Engine.generate_salt
-user_4 = User.create!(name: "Regina", password_digest: BCrypt::Engine.hash_secret("]UmF$ax8y<X3Lb-", user_4_salt))
+user_4 = User.create!(name: "Regina", password_digest: BCrypt::Engine.hash_secret("UmF$ax8y<X3Lb-", user_4_salt))
 user_5_salt = BCrypt::Engine.generate_salt
-user_5 = User.create!(name: "Aleski", password_digest: BCrypt::Engine.hash_secret("]UmF$ax8y<X3Lb-", user_5_salt))
+user_5 = User.create!(name: "Aleski", password_digest: BCrypt::Engine.hash_secret("UmF$ax8y<X3Lb-", user_5_salt))
 
 puts "Seeding Ratings"
 dogs = Dog.all

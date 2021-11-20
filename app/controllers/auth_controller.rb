@@ -7,7 +7,7 @@ class AuthController < ApplicationController
             @token = encode_token({user_id: @user.id})
             render json: {user: UserSerializer.new(@user), jwt: @token}, status: :accepted
         else
-            rener json: {error: 'Invalid Username or Password'}, status: :unauthorized
+            render json: {error: 'Invalid Username or Password'}, status: :unauthorized
         end
     end
 
@@ -19,6 +19,6 @@ class AuthController < ApplicationController
     private
 
     def auth_params
-        params.require(:authorization).permit(:name, :password)
+        params.require(:auth).permit(:name, :password)
     end
 end
