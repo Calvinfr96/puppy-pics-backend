@@ -7,21 +7,24 @@ class RatingsController < ApplicationController
         render json: users
     end
 
-    def create
-        rating = Rating.create!(rating_params)
-        render json: rating, status: :created
-    end
-
-    def update
-        rating = find_rating
-        rating.update!(rating_params)
-        render json: rating
+    def rate_dog
+        exact_rating = Rating.find_by(user_id: rating_params[:user_id], dog_id: rating_params[:dog_id])
+        if exact_rating && exact_rating[:good_boy?] == rating_params[:good_boy?]
+            exact_rating.destroy
+            head :no_content
+        elsif exact_rating
+            exact_rating.update!(rating_params)
+            render json: exact_rating
+        else
+            rating = Rating.create!(rating_params)
+            render json: rating, status: :created
+        end
     end
 
     private
 
     def rating_params
-        params.permit(:user_id, :dog_id, :good_boy?)
+        params.require(:rating).permit(:user_id, :dog_id, :good_boy?)
     end
 
     def render_not_found_response
