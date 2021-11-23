@@ -13,6 +13,11 @@ class DogsController < ApplicationController
         render json: dog, status: :created
     end
 
+    def show
+        dog = find_dog
+        render json: dog, include: :ratings
+    end
+
     def destroy
         dog = find_dog
         dog.destroy
@@ -23,6 +28,10 @@ class DogsController < ApplicationController
 
     def dog_params
         params.permit(:name, :breed_id, :image_url)
+    end
+
+    def find_dog
+        Dog.find(params[:id])
     end
 
     def render_not_found_response
