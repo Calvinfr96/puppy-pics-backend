@@ -13,8 +13,8 @@ class RatingsController < ApplicationController
             exact_rating.destroy
             head :no_content
         elsif exact_rating
-            exact_rating.update!(rating_params)
-            render json: exact_rating
+            updated_rating = exact_rating.update!(rating_params)
+            render json: updated_rating
         else
             rating = Rating.create!(rating_params)
             render json: rating, status: :created
