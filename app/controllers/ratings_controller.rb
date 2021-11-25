@@ -11,14 +11,15 @@ class RatingsController < ApplicationController
         exact_rating = Rating.find_by(user_id: rating_params[:user_id], dog_id: rating_params[:dog_id])
         if exact_rating && exact_rating[:good_boy?] == rating_params[:good_boy?]
             exact_rating.destroy
-            head :no_content
+            updated_dog = Dog.find(exact_rating.dog_id)
         elsif exact_rating
             updated_rating = exact_rating.update!(rating_params)
-            render json: updated_rating
+            updated_dog = Dog.find(exact_rating.dog_id)
         else
             rating = Rating.create!(rating_params)
-            render json: rating, status: :created
+            updated_dog = Dog.find(rating.dog_id)
         end
+        render json: {updated_dog: DogSerializer.new(updated_dog)}
     end
 
     private
